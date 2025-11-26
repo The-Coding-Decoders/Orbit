@@ -1,4 +1,3 @@
-rbit
 Orbit is a programming language that provides shell-style utilities — not a modern interactive shell. It’s designed for writing programs that use shell-like commands as composable, typed primitives (with an emphasis on .pipe() and exec(...).arg(...)). Orbit combines an object-oriented syntax, file operations (fs module), Git/http utilities, and an LLVM JIT backend for performance. Note: Orbit does not aim to be POSIX-compatible.
 
 Badges ![License](./LICENSE) ![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-green.svg)
