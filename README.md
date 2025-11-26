@@ -31,15 +31,15 @@ These steps will get you a copy of the project up and running on your local mach
 
 2. Install dependencies (example; replace with your stack's package manager):
 
-   npm install
+   pip install
 
 3. Run the app locally:
 
-   npm start
+   pip start
 
 4. Run tests:
 
-   npm test
+   pip test
 
 Installation
 Include platform-specific or environment-specific instructions (Node, Docker, Python, etc.). Example Docker usage:
