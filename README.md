@@ -1,73 +1,78 @@
-# Orbit
+rbit
+Orbit is a programming language that provides shell-style utilities — not a modern interactive shell. It’s designed for writing programs that use shell-like commands as composable, typed primitives (with an emphasis on .pipe() and exec(...).arg(...)). Orbit combines an object-oriented syntax, file operations (fs module), Git/http utilities, and an LLVM JIT backend for performance. Note: Orbit does not aim to be POSIX-compatible.
 
-Orbit — a simple, production-ready project starter for building awesome things.
-
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](./LICENSE)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-green.svg)](#contributing)
-
-A short, compelling description of what Orbit does and why it exists. Replace this paragraph with a crisp elevator pitch for your project — what problem it solves, who it is for, and what makes it special.
+Badges ![License](./LICENSE) ![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-green.svg)
 
 Table of Contents
-- Features
-- Quick Start
-- Installation
-- Usage
-- Configuration
-- Development
-- Contributing
-- License
 
 Features
-- Concise list of the main features and benefits.
-- Bullet-friendly description that helps people quickly understand the value.
-
 Quick Start
-These steps will get you a copy of the project up and running on your local machine for development and testing.
+Installation
+Usage
+Configuration
+Development
+Contributing
+License
+Features
 
-1. Fork the repo and clone:
+Programming-language-first design with shell utilities (not an interactive shell).
+Composable command pipelines via .pipe().
+Clear command API: exec(Array[String]).arg(Array[String]).
+File-system utilities via fs module.
+Git and network utilities via the got / git modules.
+LLVM JIT for execution speed.
+Designed for embedding in programs and scripts.
+Quick Start
 
-   git clone https://github.com/The-Coding-Decoders/Orbit.git
-   cd Orbit
+Fork the repo and clone: git clone https://github.com/The-Coding-Decoders/Orbit.git cd Orbit
 
-2. Install dependencies (example; replace with your stack's package manager):
+Install dependencies (development): python -m pip install -e .
 
-   pip install
+Or, to install from PyPI (replace with the actual package name if published): python -m pip install orbit
 
-3. Run the app locally:
+Run the REPL or main entry (example — replace with actual entrypoint if different): python -m orbit
 
-   pip start
-
-4. Run tests:
-
-   pip test
+Run tests: python -m pip install -r requirements-dev.txt pytest
 
 Installation
-Include platform-specific or environment-specific instructions (Node, Docker, Python, etc.). Example Docker usage:
 
-   docker build -t orbit .
-   docker run -p 3000:3000 orbit
+Local development: python -m pip install -e .
 
-Usage
-Provide examples of common use-cases, code snippets, or CLI commands. Include expected outputs and screenshots/GIFs if helpful.
+From PyPI (replace package name if different): python -m pip install orbit
 
-Configuration
-Explain configuration options, environment variables, and default behavior. For example:
+Docker example: docker build -t orbit . docker run -it --rm orbit
 
-- ORBIT_ENV — development | staging | production
-- ORBIT_PORT — default 3000
+Usage Orbit exposes a composable exec API and a .pipe() method to build pipelines programmatically. The canonical API shape is exec(Array[String]).arg(Array[String]) and pipeline chaining with .pipe().
 
+Examples:
+
+Simple command with arguments from orbit import exec proc = exec(["git"]).arg(["status", "--porcelain"]) result = proc.run() print(result.stdout)
+
+Pipeline: cat file.txt | grep 'TODO' | wc -l from orbit import exec pipeline = exec(["cat"]).arg(["file.txt"])
+.pipe(exec(["grep"]).arg(["TODO"]))
+.pipe(exec(["wc"]).arg(["-l"])) result = pipeline.run() print(result.stdout)
+
+Using fs utilities (read a file) from orbit import fs content = fs.read("notes.txt") print(content)
+
+Notes
+
+This is a programming environment: use Orbit’s API to construct, inspect, and run pipelines from code. It is not intended as a drop-in replacement for interactive shells like bash/zsh with their POSIX features.
+Commands and arguments are passed as arrays of strings for clarity and safety: exec(["cmd", "subcmd"]).arg(["--flag", "value"]).
 Development
-Explain how to set up a local dev environment, run linters, and tests.
 
-- Run linters: npm run lint
-- Run type checks: npm run typecheck
-- Run tests in watch mode: npm run test:watch
+Install dev requirements: python -m pip install -r requirements-dev.txt
 
-Contributing
-We ❤️ contributions — see CONTRIBUTING.md for detailed guidelines.
+Run linters and type checks:
 
-License
-This project is licensed under the Apache License 2.0 — see the LICENSE file for details.
+example; adjust to the project's tools
+ruff check . mypy .
+
+Run tests: pytest
+
+Contributing We ❤️ contributions — see CONTRIBUTING.md for guidelines.
+
+License This project is licensed under the Apache License 2.0 — see the LICENSE file for details.
 
 Maintainers
-- The-Coding-Decoders (https://github.com/The-Coding-Decoders)
+
+The-Coding-Decoders (https://github.com/The-Coding-Decoders
